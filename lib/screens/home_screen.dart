@@ -22,13 +22,13 @@ class _HomeScreenState extends State<HomeScreen> {
   late Future<List<Doa>> doas;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String _currentTime = '';
-  bool _showSurat = true; // Default to show Surat initially
+  bool _showSurat = true; 
   bool _showDoa = false;
 
   @override
   void initState() {
     super.initState();
-    surahs = ApiService.getAllSurahs();
+    surahs = ApiService.getRandomSurahs(5);
     doas = ApiService.getAllDoas();
     _updateTime();
   }
@@ -64,7 +64,7 @@ Widget build(BuildContext context) {
       backgroundColor: Colors.transparent,
       actions: [
         IconButton(
-          icon: const Icon(Icons.settings, color: Colors.black),
+          icon: const Icon(Icons.person, color: Colors.black),
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen()));
           },
@@ -174,7 +174,7 @@ Widget build(BuildContext context) {
                   ),
                 ),
 
-                // Content Section
+                
                 const SizedBox(height: 20),
                 if (_showSurat) _buildSuratList(),
                 if (_showDoa) _buildDoaList(),
@@ -215,7 +215,7 @@ Widget build(BuildContext context) {
               child: Text(
                 title,
                 style: GoogleFonts.poppins(
-                  fontSize: 14, // Sesuaikan ukuran font
+                  fontSize: 14, 
                   fontWeight: FontWeight.bold,
                   color: isActive ? Colors.white : Colors.black,
                 ),
